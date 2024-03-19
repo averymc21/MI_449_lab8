@@ -1,5 +1,5 @@
 // Import Supabase client
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from 'https://cdn.skypack.dev/@supabase/supabase-js';
 
 // Supabase configuration
 const supabaseUrl = 'https://fxgexffrvlsounxjxutv.supabase.co';
@@ -9,14 +9,14 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Function to fetch books from Supabase and populate the table   
 async function displayBooks() {
-    console.log ("hello");
     try {
         // Fetch books data from Supabase
+
         const { data: favorite_books, error } = await supabase.from('favorite_books').select('*');
         if (error) {
             throw error;
         }
-
+        console.log (favorite_books);
         // Get table element
         const booksTable = document.getElementById('books-table');
 
@@ -34,9 +34,15 @@ async function displayBooks() {
                 <td>${book.author}</td>
                 <td>${book.isbn}</td>
             `;
+            const tbody = booksTable.querySelector('tbody');
+    
+            // Check if tbody exists before appending the row
+            
+            booksTable.appendChild(row);
+            
 
             // Append row to table
-            booksTable.querySelector('tbody').appendChild(row);
+           // booksTable.querySelector('tbody').appendChild(row);
         });
     } catch (error) {
         console.error('Error fetching books:', error.message);
