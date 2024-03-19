@@ -3,15 +3,16 @@ import { createClient } from '@supabase/supabase-js';
 
 // Supabase configuration
 const supabaseUrl = 'https://fxgexffrvlsounxjxutv.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ4Z2V4ZmZydmxzb3VueGp4dXR2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxMDUyMDI4NiwiZXhwIjoyMDI2MDk2Mjg2fQ.HW74UaLkWI1o-DdChriSKbYTo_rWYu8j6x5hvG1nAms';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ4Z2V4ZmZydmxzb3VueGp4dXR2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxMDUyMDI4NiwiZXhwIjoyMDI2MDk2Mjg2fQ.HW74UaLkWI1o-DdChriSKbYTo_rWYu8j6x5hvG1nAms'
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// Function to fetch books from Supabase and populate the table
+// Function to fetch books from Supabase and populate the table   
 async function displayBooks() {
+    console.log ("hello");
     try {
         // Fetch books data from Supabase
-        const { data: books, error } = await supabase.from('books').select('*');
+        const { data: favorite_books, error } = await supabase.from('favorite_books').select('*');
         if (error) {
             throw error;
         }
@@ -23,7 +24,7 @@ async function displayBooks() {
         booksTable.innerHTML = '';
 
         // Populate table with books data
-        books.forEach(book => {
+        favorite_books.forEach(book => {
             // Create a new row
             const row = document.createElement('tr');
 
