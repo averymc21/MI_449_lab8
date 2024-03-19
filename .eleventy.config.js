@@ -4,7 +4,7 @@
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("styles");
-  eleventyConfig.addPassthroughCopy("script.js");
+  eleventyConfig.addPassthroughCopy("./script.js");
 
 
 };
